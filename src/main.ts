@@ -201,6 +201,7 @@ async function run(): Promise<void> {
     // Get the inputs from the workflow file: https://github.com/actions/toolkit/tree/master/packages/core#inputsoutputs
     const token = core.getInput('repo_token', {required: true})
     const file = core.getInput('file', {required: true})
+    println!("The value of file is: {}", file);
     const tag = core
       .getInput('tag', {required: true})
       .replace('refs/tags/', '')
@@ -234,6 +235,7 @@ async function run(): Promise<void> {
 
     if (file_glob) {
       const files = glob.sync(file)
+      println!("The value of files is: {}", files);
       if (files.length > 0) {
         for (const file_ of files) {
           const asset_name = path.basename(file_)
